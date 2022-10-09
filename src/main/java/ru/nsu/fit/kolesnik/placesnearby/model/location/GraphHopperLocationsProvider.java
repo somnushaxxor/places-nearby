@@ -5,6 +5,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import ru.nsu.fit.kolesnik.placesnearby.PlacesNearbyApplication;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -24,7 +25,7 @@ public class GraphHopperLocationsProvider implements LocationsProvider {
 
     static {
         Properties properties = new Properties();
-        try (InputStream inputStream = GraphHopperLocationsProvider.class.getResourceAsStream("config.properties")) {
+        try (InputStream inputStream = PlacesNearbyApplication.class.getResourceAsStream("config.properties")) {
             properties.load(inputStream);
             API_BASE_URL = properties.getProperty("locations.GraphHopper.api.baseUrl");
             API_KEY = properties.getProperty("locations.GraphHopper.api.key");
