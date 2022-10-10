@@ -11,5 +11,6 @@ module ru.nsu.fit.kolesnik.placesnearby {
     opens ru.nsu.fit.kolesnik.placesnearby to javafx.fxml;
     exports ru.nsu.fit.kolesnik.placesnearby;
     exports ru.nsu.fit.kolesnik.placesnearby.model.location;
-    opens ru.nsu.fit.kolesnik.placesnearby.model.location to javafx.fxml, com.fasterxml.jackson.databind;
+    exports ru.nsu.fit.kolesnik.placesnearby.model.location.graphhopper;
+    opens ru.nsu.fit.kolesnik.placesnearby.model.location.graphhopper to com.fasterxml.jackson.databind, javafx.fxml;
 }

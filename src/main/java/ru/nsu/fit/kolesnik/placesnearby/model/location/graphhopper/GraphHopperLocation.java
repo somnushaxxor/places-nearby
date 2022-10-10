@@ -1,17 +1,17 @@
-package ru.nsu.fit.kolesnik.placesnearby.model.location;
+package ru.nsu.fit.kolesnik.placesnearby.model.location.graphhopper;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
 
 @Getter
 @Setter
-@ToString
-public final class GeocodingLocation {
+@JsonIgnoreProperties(ignoreUnknown = true)
+public final class GraphHopperLocation {
 
-    private GeocodingPoint point;
+    private GraphHopperLocationPoint point;
     private String name;
     private String country;
     private String state;
@@ -24,8 +24,7 @@ public final class GeocodingLocation {
     @Getter
     @Setter
     @NoArgsConstructor
-    @ToString
-    private class GeocodingPoint {
+    class GraphHopperLocationPoint {
 
         private double lat;
         private double lng;
