@@ -13,4 +13,7 @@ module ru.nsu.fit.kolesnik.placesnearby {
     exports ru.nsu.fit.kolesnik.placesnearby.model.location;
     exports ru.nsu.fit.kolesnik.placesnearby.model.location.graphhopper;
     opens ru.nsu.fit.kolesnik.placesnearby.model.location.graphhopper to com.fasterxml.jackson.databind, javafx.fxml;
+    exports ru.nsu.fit.kolesnik.placesnearby.model.location.graphhopper.payload;
+    opens ru.nsu.fit.kolesnik.placesnearby.model.location.graphhopper.payload to com.fasterxml.jackson.databind, javafx.fxml;
+    exports ru.nsu.fit.kolesnik.placesnearby.model.weather.openweather.payload;
 }
