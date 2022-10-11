@@ -1,10 +1,12 @@
 package ru.nsu.fit.kolesnik.placesnearby.model.location;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.ToString;
 
 @Getter
 @ToString
+@AllArgsConstructor
 public class Location {
 
     private final String name;
@@ -16,19 +18,5 @@ public class Location {
     private final String street;
     private final String houseNumber;
     private final String postcode;
-
-
-    public Location(String name, double latitude, double longitude, String country, String state, String city,
-                    String street, String houseNumber, String postcode) {
-        this.name = name;
-        this.latitude = latitude;
-        this.longitude = longitude;
-        this.country = country;
-        this.state = state;
-        this.city = city;
-        this.street = street;
-        this.houseNumber = houseNumber;
-        this.postcode = postcode;
-    }
 
 }

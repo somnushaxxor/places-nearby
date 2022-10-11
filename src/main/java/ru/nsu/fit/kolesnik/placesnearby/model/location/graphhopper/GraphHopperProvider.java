@@ -1,11 +1,11 @@
 package ru.nsu.fit.kolesnik.placesnearby.model.location.graphhopper;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import ru.nsu.fit.kolesnik.placesnearby.PlacesNearbyApplication;
 import ru.nsu.fit.kolesnik.placesnearby.model.location.Location;
 import ru.nsu.fit.kolesnik.placesnearby.model.location.LocationsProvider;
+import ru.nsu.fit.kolesnik.placesnearby.model.location.graphhopper.payload.GraphHopperResponse;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -41,7 +41,6 @@ public class GraphHopperProvider implements LocationsProvider {
     public GraphHopperProvider(HttpClient httpClient) {
         this.httpClient = httpClient;
         objectMapper = new ObjectMapper();
-        objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
     }
 
     @Override

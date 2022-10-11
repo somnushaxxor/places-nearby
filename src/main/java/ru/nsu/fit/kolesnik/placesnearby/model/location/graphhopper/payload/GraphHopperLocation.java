@@ -1,4 +1,4 @@
-package ru.nsu.fit.kolesnik.placesnearby.model.location.graphhopper;
+package ru.nsu.fit.kolesnik.placesnearby.model.location.graphhopper.payload;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -9,7 +9,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @JsonIgnoreProperties(ignoreUnknown = true)
-public final class GraphHopperLocation {
+public class GraphHopperLocation {
 
     private GraphHopperLocationPoint point;
     private String name;
@@ -24,10 +24,12 @@ public final class GraphHopperLocation {
     @Getter
     @Setter
     @NoArgsConstructor
-    class GraphHopperLocationPoint {
+    public static class GraphHopperLocationPoint {
 
-        private double lat;
-        private double lng;
+        @JsonProperty("lat")
+        private double latitude;
+        @JsonProperty("lng")
+        private double longitude;
 
     }
 

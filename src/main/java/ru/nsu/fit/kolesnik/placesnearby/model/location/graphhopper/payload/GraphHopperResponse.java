@@ -1,4 +1,4 @@
-package ru.nsu.fit.kolesnik.placesnearby.model.location.graphhopper;
+package ru.nsu.fit.kolesnik.placesnearby.model.location.graphhopper.payload;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
