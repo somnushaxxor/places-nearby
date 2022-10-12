@@ -9,9 +9,10 @@ import lombok.Setter;
 @Getter
 @Setter
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class GraphHopperLocation {
+public class GraphHopperResponseItem {
 
-    private GraphHopperLocationPoint point;
+    @JsonProperty("point")
+    private Coordinates coordinates;
     private String name;
     private String country;
     private String state;
@@ -24,7 +25,7 @@ public class GraphHopperLocation {
     @Getter
     @Setter
     @NoArgsConstructor
-    public static class GraphHopperLocationPoint {
+    static public class Coordinates {
 
         @JsonProperty("lat")
         private double latitude;

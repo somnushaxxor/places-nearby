@@ -10,7 +10,7 @@ import lombok.ToString;
 public class Weather {
 
     private final String name;
-    private final String iconName;
+    private final String iconUrl;
     private final double temperature;
     private final double feelsLikeTemperature;
     private final int humidity;

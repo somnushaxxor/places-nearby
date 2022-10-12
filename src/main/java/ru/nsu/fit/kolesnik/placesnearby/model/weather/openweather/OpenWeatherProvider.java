@@ -45,14 +45,13 @@ public class OpenWeatherProvider implements WeatherProvider {
     public void getWeatherByCoordinates(double latitude, double longitude, Consumer<Weather> onSuccess,
                                         Consumer<String> onError) {
         HttpRequest request = HttpRequest.newBuilder().uri(getUrl(latitude, longitude)).GET().build();
-        OpenWeatherResponseMapper weatherMapper = new OpenWeatherResponseMapper();
+        OpenWeatherMapper weatherMapper = new OpenWeatherMapper();
         httpClient.sendAsync(request, HttpResponse.BodyHandlers.ofString())
                 .thenApply(HttpResponse::body)
                 .thenApply(json -> {
                     try {
                         return objectMapper.readValue(json, OpenWeatherResponse.class);
                     } catch (JsonProcessingException e) {
-                        e.printStackTrace();
                         throw new RuntimeException(e);
                     }
                 })

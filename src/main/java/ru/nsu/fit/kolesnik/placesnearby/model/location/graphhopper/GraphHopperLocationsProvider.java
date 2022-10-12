@@ -19,7 +19,7 @@ import java.util.Properties;
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
-public class GraphHopperProvider implements LocationsProvider {
+public class GraphHopperLocationsProvider implements LocationsProvider {
 
     private static final String API_BASE_URL;
     private static final String API_KEY;
@@ -38,7 +38,7 @@ public class GraphHopperProvider implements LocationsProvider {
     private final HttpClient httpClient;
     private final ObjectMapper objectMapper;
 
-    public GraphHopperProvider(HttpClient httpClient) {
+    public GraphHopperLocationsProvider(HttpClient httpClient) {
         this.httpClient = httpClient;
         objectMapper = new ObjectMapper();
     }
@@ -54,7 +54,6 @@ public class GraphHopperProvider implements LocationsProvider {
                     try {
                         return objectMapper.readValue(json, GraphHopperResponse.class);
                     } catch (JsonProcessingException e) {
-                        e.printStackTrace();
                         throw new RuntimeException(e);
                     }
                 })
@@ -63,8 +62,8 @@ public class GraphHopperProvider implements LocationsProvider {
                         onError.accept("Failed to process JSON from HTTP request");
                 })
                 .thenApply(GraphHopperResponse::getHits)
-                .thenApply(graphHopperLocations ->
-                        graphHopperLocations.stream().map(locationMapper::map).collect(Collectors.toList()))
+                .thenApply(graphHopperResponseItems ->
+                        graphHopperResponseItems.stream().map(locationMapper::map).collect(Collectors.toList()))
                 .thenAccept(onSuccess);
     }
 

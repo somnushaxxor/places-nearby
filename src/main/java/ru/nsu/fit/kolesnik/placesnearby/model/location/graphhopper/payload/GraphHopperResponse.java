@@ -11,6 +11,6 @@ import java.util.List;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class GraphHopperResponse {
 
-    List<GraphHopperLocation> hits;
+    List<GraphHopperResponseItem> hits;
 
 }
