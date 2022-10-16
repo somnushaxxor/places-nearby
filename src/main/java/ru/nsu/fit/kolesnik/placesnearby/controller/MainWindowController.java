@@ -63,15 +63,19 @@ public class MainWindowController implements Initializable {
 
     @FXML
     public void onEnteredLocationName() {
-        errorLabel.setText("");
-        locationsListView.getItems().clear();
-        placesListView.getItems().clear();
-        locationsProvider.getLocationsByName(searchTextField.getText(),
-                locations ->
-                        Platform.runLater(() -> locations.forEach(location ->
-                                locationsListView.getItems().add(location))),
-                s -> Platform.runLater(() -> errorLabel.setText(s)));
-        searchTextField.setText("");
+        if (!searchTextField.getText().isBlank()) {
+            errorLabel.setText("");
+            locationsListView.getItems().clear();
+            placesListView.getItems().clear();
+            locationsProvider.getLocationsByName(searchTextField.getText(),
+                    locations ->
+                            Platform.runLater(() -> locations.forEach(location ->
+                                    locationsListView.getItems().add(location))),
+                    s -> Platform.runLater(() -> errorLabel.setText(s)));
+        }
+        if (!searchTextField.getText().isEmpty()) {
+            searchTextField.setText("");
+        }
     }
 
     @FXML
