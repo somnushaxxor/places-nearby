@@ -12,7 +12,6 @@ public class Weather {
     private final String name;
     private final String iconUrl;
     private final double temperature;
-    private final double feelsLikeTemperature;
     private final int humidity;
     private final double windSpeed;
 

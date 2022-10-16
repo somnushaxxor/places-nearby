@@ -9,12 +9,15 @@ public class OpenTripMapPlaceMapper implements Mapper<OpenTripMapPlaceInfoRespon
 
     @Override
     public Place map(OpenTripMapPlaceInfoResponse openTripMapPlaceInfoResponse) {
-        Coordinates coordinates = null;
-        if (openTripMapPlaceInfoResponse.getCoordinates() != null) {
-            coordinates = new Coordinates(openTripMapPlaceInfoResponse.getCoordinates().getLatitude(),
-                    openTripMapPlaceInfoResponse.getCoordinates().getLongitude());
+        Coordinates coordinates = new Coordinates(openTripMapPlaceInfoResponse.getCoordinates().getLatitude(),
+                openTripMapPlaceInfoResponse.getCoordinates().getLongitude());
+        String name;
+        if (openTripMapPlaceInfoResponse.getName().isEmpty()) {
+            name = "UNKNOWN";
+        } else {
+            name = openTripMapPlaceInfoResponse.getName();
         }
-        return new Place(openTripMapPlaceInfoResponse.getName(), coordinates, openTripMapPlaceInfoResponse.getKinds(),
+        return new Place(name, coordinates, openTripMapPlaceInfoResponse.getKinds(),
                 openTripMapPlaceInfoResponse.getImageUrl(), openTripMapPlaceInfoResponse.getWikipediaUrl());
     }
 

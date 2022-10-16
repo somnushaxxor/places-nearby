@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="620.0" prefWidth="822.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.nsu.fit.kolesnik.placesnearby.controller.MainWindowController">
+    <columnConstraints>
+        <ColumnConstraints maxWidth="257.8" minWidth="205.0" prefWidth="257.8" />
+        <ColumnConstraints hgrow="SOMETIMES" maxWidth="570.0" minWidth="10.0" prefWidth="523.0" />
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints maxHeight="215.6" minHeight="0.0" prefHeight="126.4" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="459.6" minHeight="10.0" prefHeight="365.6" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="148.59999999999997" minHeight="10.0" prefHeight="129.60000000000002" vgrow="SOMETIMES" />
+    </rowConstraints>
+    <children>
+        <VBox alignment="CENTER" prefHeight="89.0" prefWidth="238.0">
+            <children>
+                <Label text="Enter location name">
+                    <font>
+                        <Font size="14.0" />
+                    </font>
+                    <VBox.margin>
+                        <Insets />
+                    </VBox.margin>
+                </Label>
+                <TextField fx:id="searchTextField" onAction="#onEnteredLocationName">
+                    <GridPane.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="10.0" />
+                    </GridPane.margin>
+                    <VBox.margin>
+                        <Insets bottom="5.0" top="5.0" />
+                    </VBox.margin>
+                </TextField>
+                <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                    <children>
+                        <Label text="Radius: " />
+                        <Label fx:id="radiusLabel" text="1000" />
+                    </children>
+                </HBox>
+                <Slider fx:id="radiusSlider" blockIncrement="1.0" focusTraversable="false" majorTickUnit="1.0" max="10000.0" min="100.0" minorTickCount="0" snapToTicks="true" value="1000.0" />
+                <Label fx:id="errorLabel" textFill="RED">
+                    <font>
+                        <Font size="14.0" />
+                    </font>
+                    <VBox.margin>
+                        <Insets bottom="5.0" top="5.0" />
+                    </VBox.margin>
+                </Label>
+            </children>
+            <GridPane.margin>
+                <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
+            </GridPane.margin>
+        </VBox>
+        <ListView fx:id="locationsListView" focusTraversable="false" onMouseClicked="#onLocationSelection" prefHeight="287.0" prefWidth="200.0" GridPane.rowIndex="1" GridPane.rowSpan="2147483647" />
+        <ListView fx:id="placesListView" focusTraversable="false" onMouseClicked="#onPlaceSelection" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+        <TextArea fx:id="placeAdditionalInfoTextArea" editable="false" focusTraversable="false" prefHeight="200.0" prefWidth="200.0" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: BF0000;" GridPane.columnIndex="1">
+            <children>
+                <ImageView fx:id="weatherImageView" fitHeight="93.0" fitWidth="111.0" layoutX="171.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true" />
+                <Label fx:id="weatherNameLabel" layoutX="14.0" layoutY="45.0" textFill="WHITE">
+                    <font>
+                        <Font size="24.0" />
+                    </font>
+                </Label>
+                <Label fx:id="weatherTemperatureLabel" layoutX="282.0" layoutY="45.0" textFill="WHITE">
+                    <font>
+                        <Font size="24.0" />
+                    </font>
+                </Label>
+                <Label fx:id="weatherHumidityLabel" layoutX="386.0" layoutY="45.0" textFill="WHITE">
+                    <font>
+                        <Font size="24.0" />
+                    </font>
+                </Label>
+                <Label fx:id="weatherWindSpeedLabel" layoutX="452.0" layoutY="45.0" textFill="WHITE">
+                    <font>
+                        <Font size="24.0" />
+                    </font>
+                </Label>
+            </children>
+        </Pane>
+    </children>
+</GridPane>

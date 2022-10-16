@@ -10,8 +10,8 @@ public class OpenWeatherMapper implements Mapper<OpenWeatherResponse, Weather> {
     public Weather map(OpenWeatherResponse openWeatherResponse) {
         return new Weather(openWeatherResponse.getInfoList().get(0).getWeatherName(),
                 getIconUrl(openWeatherResponse.getInfoList().get(0).getIconName()),
-                openWeatherResponse.getMain().getTemperature(), openWeatherResponse.getMain().getFeelsLikeTemperature(),
-                openWeatherResponse.getMain().getHumidity(), openWeatherResponse.getWind().getSpeed());
+                openWeatherResponse.getMain().getTemperature(), openWeatherResponse.getMain().getHumidity(),
+                openWeatherResponse.getWind().getSpeed());
     }
 
     private String getIconUrl(String iconName) {

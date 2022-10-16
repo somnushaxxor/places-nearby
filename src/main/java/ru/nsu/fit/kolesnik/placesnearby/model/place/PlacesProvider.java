@@ -5,7 +5,7 @@ import java.util.function.Consumer;
 
 public interface PlacesProvider {
 
-    void getPlacesByCoordinates(double latitude, double longitude, Consumer<List<Place>> onSuccess,
-                                Consumer<String> onError);
+    void getPlacesByCoordinatesInRadius(double latitude, double longitude, int radius, Consumer<List<Place>> onSuccess,
+                                        Consumer<String> onError);
 
 }

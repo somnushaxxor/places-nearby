@@ -39,8 +39,6 @@ public class OpenWeatherResponse {
 
         @JsonProperty("temp")
         private double temperature;
-        @JsonProperty("feels_like")
-        private double feelsLikeTemperature;
         private int humidity;
 
     }
