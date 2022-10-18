@@ -14,7 +14,7 @@ public class PlacesNearbyApplication extends Application {
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(PlacesNearbyApplication.class.getResource("main-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
-        Image appIcon = new Image("ru/nsu/fit/kolesnik/placesnearby/app-icon.png");
+        Image appIcon = new Image(PlacesNearbyApplication.class.getResourceAsStream("app-icon.png"));
         stage.getIcons().add(appIcon);
         stage.setTitle("Places Nearby");
         stage.setScene(scene);
