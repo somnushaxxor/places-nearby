@@ -3,6 +3,7 @@ package ru.nsu.fit.kolesnik.placesnearby.model.weather.openweather;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import ru.nsu.fit.kolesnik.placesnearby.PlacesNearbyApplication;
+import ru.nsu.fit.kolesnik.placesnearby.model.exception.ConfigPropertyNotFoundException;
 import ru.nsu.fit.kolesnik.placesnearby.model.weather.Weather;
 import ru.nsu.fit.kolesnik.placesnearby.model.weather.WeatherProvider;
 import ru.nsu.fit.kolesnik.placesnearby.model.weather.openweather.payload.OpenWeatherResponse;
@@ -27,7 +28,13 @@ public class OpenWeatherProvider implements WeatherProvider {
         try (InputStream inputStream = PlacesNearbyApplication.class.getResourceAsStream("config.properties")) {
             properties.load(inputStream);
             API_BASE_URL = properties.getProperty("weather.OpenWeather.api.baseUrl");
+            if (API_BASE_URL == null) {
+                throw new ConfigPropertyNotFoundException("Add OpenWeather API base URL to config file!");
+            }
             API_KEY = properties.getProperty("weather.OpenWeather.api.key");
+            if (API_KEY == null) {
+                throw new ConfigPropertyNotFoundException("Add OpenWeather API key to config file!");
+            }
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

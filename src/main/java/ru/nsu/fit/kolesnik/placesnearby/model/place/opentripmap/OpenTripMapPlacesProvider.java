@@ -3,6 +3,7 @@ package ru.nsu.fit.kolesnik.placesnearby.model.place.opentripmap;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import ru.nsu.fit.kolesnik.placesnearby.PlacesNearbyApplication;
+import ru.nsu.fit.kolesnik.placesnearby.model.exception.ConfigPropertyNotFoundException;
 import ru.nsu.fit.kolesnik.placesnearby.model.place.Place;
 import ru.nsu.fit.kolesnik.placesnearby.model.place.PlacesProvider;
 import ru.nsu.fit.kolesnik.placesnearby.model.place.opentripmap.payload.OpenTripMapPlaceInfoResponse;
@@ -37,8 +38,18 @@ public class OpenTripMapPlacesProvider implements PlacesProvider {
         try (InputStream inputStream = PlacesNearbyApplication.class.getResourceAsStream("config.properties")) {
             properties.load(inputStream);
             API_BASE_URL = properties.getProperty("places.OpenTripMap.api.baseUrl");
-            LIMIT = Integer.parseInt(properties.getProperty("places.OpenTripMap.api.limit"));
+            if (API_BASE_URL == null) {
+                throw new ConfigPropertyNotFoundException("Add OpenTripMap API base URL to config file!");
+            }
+            String limitString = properties.getProperty("places.OpenTripMap.api.limit");
+            if (limitString == null) {
+                throw new ConfigPropertyNotFoundException("Add OpenTripMap API limit to config file!");
+            }
+            LIMIT = Integer.parseInt(limitString);
             API_KEY = properties.getProperty("places.OpenTripMap.api.key");
+            if (API_KEY == null) {
+                throw new ConfigPropertyNotFoundException("Add OpenTripMap API key to config file!");
+            }
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

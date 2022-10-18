@@ -3,6 +3,7 @@ package ru.nsu.fit.kolesnik.placesnearby.model.location.graphhopper;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import ru.nsu.fit.kolesnik.placesnearby.PlacesNearbyApplication;
+import ru.nsu.fit.kolesnik.placesnearby.model.exception.ConfigPropertyNotFoundException;
 import ru.nsu.fit.kolesnik.placesnearby.model.location.Location;
 import ru.nsu.fit.kolesnik.placesnearby.model.location.LocationsProvider;
 import ru.nsu.fit.kolesnik.placesnearby.model.location.graphhopper.payload.GraphHopperResponse;
@@ -29,7 +30,13 @@ public class GraphHopperLocationsProvider implements LocationsProvider {
         try (InputStream inputStream = PlacesNearbyApplication.class.getResourceAsStream("config.properties")) {
             properties.load(inputStream);
             API_BASE_URL = properties.getProperty("locations.GraphHopper.api.baseUrl");
+            if (API_BASE_URL == null) {
+                throw new ConfigPropertyNotFoundException("Add GraphHopper API base URL to config file!");
+            }
             API_KEY = properties.getProperty("locations.GraphHopper.api.key");
+            if (API_KEY == null) {
+                throw new ConfigPropertyNotFoundException("Add GraphHopper API key to config file!");
+            }
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
